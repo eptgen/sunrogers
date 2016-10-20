@@ -1,0 +1,12 @@
+<NotepadPlus>
+    <Session activeView="0">
+        <mainView activeIndex="0">
+            <File firstVisibleLine="86" xOffset="0" scrollWidth="1183" startPos="2781" endPos="2781" selMode="0" lang="Python" encoding="-1" filename="C:\Python27\Projects\virtualenvs\ebdjango\ebdjango\settings.py" backupFilePath="" originalFileLastModifTimestamp="1461632561" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="637" startPos="311" endPos="311" selMode="0" lang="HTML" encoding="-1" filename="C:\Python27\Projects\virtualenvs\ebdjango\ebdjango\templates\ebdjango\index.html" backupFilePath="" originalFileLastModifTimestamp="1461305333" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1092" startPos="193" endPos="193" selMode="0" lang="Python" encoding="-1" filename="C:\Python27\Projects\virtualenvs\ebdjango\ebdjango\urls.py" backupFilePath="" originalFileLastModifTimestamp="1462486025" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="598" startPos="0" endPos="0" selMode="0" lang="Python" encoding="-1" filename="C:\Python34\Projects\Django\birth\main\admin.py" backupFilePath="" originalFileLastModifTimestamp="1451961705" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1690" startPos="378" endPos="378" selMode="0" lang="Python" encoding="-1" filename="C:\Python27\Projects\virtualenvs\ebdjango\ebdjango\views.py" backupFilePath="" originalFileLastModifTimestamp="1462488166" />
+        </mainView>
+        <subView activeIndex="0" />
+    </Session>
+</NotepadPlus>

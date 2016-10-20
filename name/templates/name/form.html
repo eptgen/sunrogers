@@ -1,0 +1,11 @@
+{% extends 'name/base.html' %}
+
+{% block title %}Enter your name!{% endblock %}
+
+{% block body %}
+<form action="{% url 'name:index' %}" method="post">
+	{% csrf_token %}
+	{{ form }}
+	<input type="submit" value="Submit" />
+</form>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'ebdjango/base.html' %}
+
+{% block title %}Arduino (yay){% endblock %}
+
+{% block body %}
+	<p class="success">{{ success }}</p>
+	<form action="/arduino/" method="post">
+		{% csrf_token %}
+		{{ form }}
+		<input type="submit" value="Submit" />
+	</form>
+{% endblock %}

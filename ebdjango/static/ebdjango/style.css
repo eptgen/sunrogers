@@ -1,0 +1,109 @@
+#posts
+{
+	margin: auto;
+	margin-top: 30px;
+	width: 35%;
+	/* border: 2px solid black; */
+	padding: 25px;
+	background: white;
+	height: 100%;
+}
+
+.post
+{
+	margin: 50px;
+	font-family: Sans-serif;
+}
+
+#post-background
+{
+	width: 100%;
+	background: #AAAAAA;
+	height: 100%;
+}
+
+.menu
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 10px;
+	display: block;
+	background: green;
+}
+
+.menu li
+{
+	display: inline;
+	padding: 50px;
+	font-size: 25px;
+	font-family: Sans-Serif;
+	color: white;
+}
+
+.menu li a
+{
+	text-decoration: none;
+	color: white;
+}
+
+.menu li a:hover
+{
+	color: #55FF55;
+}
+
+.comic-nav
+{
+	background-color: green;
+	color: white;
+	font-size: 25px;
+	border-radius: 10px;
+	padding: 10px;
+	text-decoration: none;
+}
+
+.comic-nav:hover
+{
+	background-color: #00AA00;
+}
+
+#comic-title
+{
+	margin: auto;
+}
+
+.success
+{
+	color: green;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% block title %}{% endblock %}</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'ebdjango/style.css' %}" />
+	</head>
+	<body>
+		<ul class="menu">
+			<li><a href="{% url 'index' %}">Home</a></li>
+			<li><a href="{% url 'blog:main' %}">Blog!</a></li>
+			<li><a href="{% url 'comic:view' %}">My webcomic!</a></li>
+		</ul>
+		{% block body %}{% endblock %}
+	</body>
+</html>

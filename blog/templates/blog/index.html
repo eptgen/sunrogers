@@ -1,0 +1,38 @@
+{% extends 'ebdjango/base.html' %}
+
+{% block title %}My bloggothy!{% endblock %}
+
+{% block body %}
+
+<div id="post-background">
+	<div id="posts">
+		<p>
+			<a href="{% url 'blog:subscribe' %}">Subscribe</a> to my blog!
+		</p> <br />
+		<div id="archives">
+			{% for entry in archives %}
+				{% if entry.year == year and entry.nmonth == month %}
+					{{ entry.month }} {{entry.year }}
+				{% else %}
+					<a href="{% url 'blog:main' year=entry.year month=entry.nmonth %}">{{ entry.month }} {{ entry.year }}</a>
+				{% endif %}
+					
+			{% endfor %}
+		</div>
+		{% if posts %}
+			{% for post in posts %}
+				<div class="post" id="post-{{ post.pk }}">
+					<h1 class="post-title">{{ post.title }}</h1>
+					<p class="post-date">{{ post.pub_date }}</p>
+					<p class="post-body">{{ post.body | safe }}</p>
+				</div>
+			{% endfor %}
+		{% else %}
+			<p>No posts, sorry. :(</p>
+		{% endif %}
+	</div>
+</div>
+
+{% endblock %}
+
+{% block stylesheet %}'blog/style.css'{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'ebdjango/base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+Bub!
+{% endblock %}
+
+{% block body %}
+<img src="{% static 'ebdjango/bub1.gif' %}"></img>
+<br />
+<img src="{% static 'ebdjango/bub2.gif' %}"></img>
+<br />
+<a href="https://www.youtube.com/watch?v=39M4az-f99w">Watch the full video (it's amazing)</a>
+{% endblock %}
