@@ -41,7 +41,11 @@ def new_account(request):
 		return render(request, "chats/newaccount.html", {})
 	
 def chats(request):
-	chats_for_user = 
+	if request.user.is_authenticated:
+		chats_for_user = Chat.objects.filter(user=request.user)
+		return render(request, "chats/allchats.html", {"chats": chats_for_user})
+	else:
+		return HttpResponseRedirect(reverse("chats:login"))
 	
 def viewchat(request, chat_id):
 	pass
