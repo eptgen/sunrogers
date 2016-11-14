@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse
 from django.contrib.auth import authenticate, login, logout
 
-from .models import Chat, Post
+from .models import Chat, Post, ChatPerm
 
 # Create your views here.
 
@@ -42,13 +42,14 @@ def new_account(request):
 	
 def chats(request):
 	if request.user.is_authenticated:
-		chats_for_user = Chat.objects.filter(user=request.user)
+		chats_for_user = ChatPerm.objects.filter(user=request.user).chat_set.all()
 		return render(request, "chats/allchats.html", {"chats": chats_for_user})
 	else:
 		return HttpResponseRedirect(reverse("chats:login"))
 	
 def viewchat(request, chat_id):
-	pass
+	if request.user.is_authenticated:
+		pass # for now
 	
 def new_chat(request):
 	pass
