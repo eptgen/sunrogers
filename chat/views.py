@@ -1,9 +1,10 @@
 
 from datetime import date
 
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, reverse
 from django.contrib.auth import authenticate, login, logout
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
 
 from .models import Chat, Post, ChatPerm
 from .forms import ChatForm, PostForm
@@ -45,7 +46,7 @@ def new_account(request):
 	
 def chats(request):
 	if request.user.is_authenticated:
-		chats_for_user = ChatPerm.objects.filter(user=request.user).chat_set.order_by("create_date")
+		chats_for_user = ChatPerm.objects.filter(user=request.user.pk).chat_set.order_by("create_date")
 		return render(request, "chats/allchats.html", {"chats": chats_for_user, "user": request.user})
 	else:
 		return HttpResponseRedirect(reverse("chats:login"))
@@ -54,7 +55,7 @@ def viewchat(request, chat_id):
 	if request.user.is_authenticated:
 		chat = Chat.objects.filter(pk=chat_id)
 		posts = Post.objects.filter(chat=chat)
-		if ChatPerm.objects.filter(user=request.user).filter(chat=chat):
+		if ChatPerm.objects.filter(user=request.user.pk).filter(chat=chat):
 			form = PostForm()
 			return render(request, "chats/chat.html", {"posts": posts, "user": request.user, "form": form})
 		return HttpResponse("Hi sorry you bad bye")
@@ -69,7 +70,7 @@ def new_chat(request):
 				chat = Chat(owner = request.user, title = form.cleaned_data["title"], body = form.cleaned_data["body"], create_date = date.today())
 				chat.save()
 				chatperm = ChatPerm(chat = chat, user = request.user)
-				return HttpResponseRedirect(reverse("chats:viewchat", chat_id=chat.pk)
+				return HttpResponseRedirect(reverse("chats:viewchat", chat_id=chat.pk))
 			else:
 				render(request, "chats/create.html", {"form": ChatForm(), "error": "All fields are required :("})
 		form = ChatForm()
@@ -80,7 +81,7 @@ def new_chat(request):
 def new_post(request, chat_id):
 	if request.user.is_authenticated:
 		chat = Chat.objects.filter(pk=chat_id)
-		if ChatPerm.objects.filter(user=request.user).filter(chat=chat):
+		if ChatPerm.objects.filter(user=request.user.pk).filter(chat=chat):
 			if request.method == "post":
 				form = PostForm(request.POST)
 				if form.is_valid():
@@ -99,7 +100,7 @@ def new_post(request, chat_id):
 def invite(request, chat_id):
 	if request.user.is_authenticated:
 		chat = Chat.objects.filter(pk=chat_id)
-		if ChatPerm.objects.filter(user=request.user).filter(chat=chat):
+		if ChatPerm.objects.filter(user=request.user.pk).filter(chat=chat):
 			if request.method == "post":
 				pass
 

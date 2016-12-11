@@ -12,5 +12,5 @@ urlpatterns = [
 	url(r'^chats/(?P<chat_id>)/$', views.viewchat, name="viewchat"),
 	url(r'^chats/(?P<chat_id>)/invite/$', views.invite, name="invite"),
 	url(r'^create/chat/$', views.new_chat, name="newchat"),
-	url(r'^create/post/(?P<chat_id>/$', views.new_post, name="newpost"),
+	url(r'^create/post/(?P<chat_id>)/$', views.new_post, name="newpost"),
 ]
