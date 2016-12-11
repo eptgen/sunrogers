@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 	'comic',
 	'arduino',
 	'classes',
+	'chat',
 ]
 
 MIDDLEWARE_CLASSES = [
