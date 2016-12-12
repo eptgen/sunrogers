@@ -25,7 +25,7 @@ SECRET_KEY = '%hgqgm1)_g!wy$&r&f61%zukbo6zbav$7vp9ij=8rm0=u4!s^+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ["localhost"]
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 	'arduino',
 	'classes',
 	'chat',
+	'broadcast.apps.BroadcastConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -154,7 +155,7 @@ STATIC_URL = '/static/'
 # Allowed hosts (me, myself, i)
 # https://thisisafakesite.com
 
-ALLOWED_HOSTS = ["127.0.0.1:8000"]
+ALLOWED_HOSTS = ["localhost"]
 
 # Media files (files uploaded by user)
 # https://idontknowthenameofthissite.com

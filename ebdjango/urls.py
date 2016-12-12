@@ -31,6 +31,7 @@ urlpatterns = [
 	url(r'^mixtape/$', views.mixtape, name="mixtape"),
 	url(r'^google503cd29fc95f3756.html$', views.verification, name="verification"),
 	url(r'^favicon.ico$', views.favicon, name="favicon"),
+	url(r'^broadcast/', include("broadcast.urls", namespace="broadcast")),
 	url(r'^entername/', include("name.urls", namespace="name")),
 	url(r'^chat/', include("chat.urls", namespace="chats")),
 	url(r'^blog/', include("blog.urls", namespace="blog")),

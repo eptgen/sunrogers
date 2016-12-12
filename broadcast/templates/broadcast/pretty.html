@@ -1,0 +1,72 @@
+{% extends 'ebdjango/base.html' %}
+
+{% block title %}The One and Only Broadcast{% endblock %}
+
+{% block body %}
+
+<h1 id="message">{{ message }}</h1>
+
+<script>
+	
+	
+	function httpGet(theUrl)
+	{
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+		xmlHttp.send( null );
+		return xmlHttp.responseText;
+	}
+	
+	function sleep(millis)
+	{
+		var date = new Date();
+		var curDate = null;
+		do { curDate = new Date(); }
+		while(curDate-date < millis);
+	}
+	
+	function update()
+	{
+		
+		var message = httpGet("{{ url }}");
+		document.getElementById("message").innerHTML = message;
+	}
+	
+	setInterval(update, 2000);
+	
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
