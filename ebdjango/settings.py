@@ -155,7 +155,7 @@ STATIC_URL = '/static/'
 # Allowed hosts (me, myself, i)
 # https://thisisafakesite.com
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["sun-rogers.com", "localhost"]
 
 # Media files (files uploaded by user)
 # https://idontknowthenameofthissite.com
