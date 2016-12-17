@@ -21,5 +21,5 @@ def view(request, num=None):
 	
 def random_comic(request):
 	all_comics = Comic.objects.all()
-	num = floor(random() * len(all_comics)) + 1
+	num = int(random() * len(all_comics)) + 1
 	return HttpResponseRedirect(reverse('comic:view', args=[str(num)]))
