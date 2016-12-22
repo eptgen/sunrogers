@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 	'classes',
 	'chat',
 	'broadcast.apps.BroadcastConfig',
+	'slides.apps.SlidesConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
