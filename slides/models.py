@@ -8,3 +8,4 @@ class Slide(models.Model):
 class Show(models.Model):
 	title = models.CharField(max_length=100)
 	slides = models.ForeignKey(Slide)
+	num = models.IntegerField(default=0)
