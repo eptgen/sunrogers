@@ -20,22 +20,28 @@ def update():
 		f.write(json.stringify({"slide": slide, "show": show}))
 		
 def next_slide(request):
-	pass
+	current_slide = Slide.objects.get(pk=slide)
+	new_slide = Slide.objects.get(pk=current_slide.num + 1)
+	slide = new_slide.pk
 	
 def prev_slide(request):
-	pass
+	current_slide = Slide.objects.get(pk=slide)
+	new_slide = Slide.objects.get(pk=current_slide.num - 1)
+	slide = new_slide.pk
 
 def home(request):
 	return render(request, "slides/index.html", {})
 	
 def change_show(request):
 	show = int(dict(request.GET)["show"])
+	return HttpResponse("success")
 	
 def change_slide(request):
 	slide = int(dict(request.GET)["slide"])
+	return HttpResponse("success")
 	
 def data(request):
-	mslide = slide.objects.get(pk=slide)
+	mslide = Slide.objects.get(pk=slide)
 	return HttpResponse(mslide.url())
 
 
