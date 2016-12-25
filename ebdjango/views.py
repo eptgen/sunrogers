@@ -1,9 +1,12 @@
 from io import BytesIO
 
 from django.http import HttpResponse, HttpResponseRedirect
-from django.templatetags.static import static
 from django.shortcuts import render
+from django.templatetags.static import static
+from django.urls import reverse
 from django.utils.encoding import smart_str
+
+from .forms import ChristmasForm
 
 def index(request):
 	return render(request, "ebdjango/index.html", {})
@@ -40,6 +43,20 @@ def do_404(request):
 	
 def favicon(request):
 	return HttpResponseRedirect(static("ebdjango/favicon.png"))
+	
+def christmas_home(request):
+	return render(request, "ebdjango/chome.html", {})
+	
+def christmas_inputs(request):
+	if request.method == "POST":
+		form = ChristmasForm(request.POST)
+		if form.is_valid():
+			if form.cleaned_data["one"].lower() == "run" and form.cleaned_data["two"].lower() == "away" and form.cleaned_data["three"].lower() == "now":
+				return HttpResponse("<h1>MERRY CHRISTMAS!!!!!!!!!!!</h1><p>Where am I? I guess I've gone back to nature...</p>")
+		else:
+			return HttpResponseRedirect(reverse("christmasinputs"))
+	form = ChristmasForm()
+	return render(request, "ebdjango/cinputs.html", {"form": form})
 
 
 
