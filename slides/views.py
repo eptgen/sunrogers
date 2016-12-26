@@ -23,11 +23,13 @@ def next_slide(request):
 	current_slide = Slide.objects.get(pk=slide)
 	new_slide = Slide.objects.get(pk=current_slide.num + 1)
 	slide = new_slide.pk
+	return HttpResponse("success")
 	
 def prev_slide(request):
 	current_slide = Slide.objects.get(pk=slide)
 	new_slide = Slide.objects.get(pk=current_slide.num - 1)
 	slide = new_slide.pk
+	return HttpResponse("success")
 
 def home(request):
 	return render(request, "slides/index.html", {})
