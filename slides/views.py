@@ -25,6 +25,7 @@ def next_slide(request):
 	current_slide = Slide.objects.get(pk=slide)
 	new_slide = Slide.objects.get(num=current_slide.num + 1)
 	slide = new_slide.pk
+	update()
 	return HttpResponse("success")
 	
 def prev_slide(request):
@@ -33,6 +34,7 @@ def prev_slide(request):
 	if (current_slide.num > 1):
 		new_slide = Slide.objects.get(num=current_slide.num - 1)
 		slide = new_slide.pk
+	update()
 	return HttpResponse("success")
 
 def home(request):
@@ -44,11 +46,13 @@ def change_show(request):
 	global show, slide
 	show = int(dict(request.GET)["show"])
 	slide = Slide.objects.get(show=show, num=1)
+	update()
 	return HttpResponse("success")
 	
 def change_slide(request):
 	global slide
 	slide = int(dict(request.GET)["slide"])
+	update()
 	return HttpResponse("success")
 	
 def data(request):
