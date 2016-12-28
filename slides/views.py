@@ -18,7 +18,7 @@ with open("slidestate", "r") as f:
 	
 def update():
 	with open("slidestate", "w") as f:
-		f.write(json.stringify({"slide": slide, "show": show}))
+		f.write(json.dumps({"slide": slide, "show": show}))
 		
 def next_slide(request):
 	global slide
