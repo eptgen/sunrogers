@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 
-from .models import Slide
+from .models import Slide, Show
 
 # Create your views here.
 
@@ -23,18 +23,21 @@ def update():
 def next_slide(request):
 	global slide
 	current_slide = Slide.objects.get(pk=slide)
-	new_slide = Slide.objects.get(num=current_slide.num + 1)
-	slide = new_slide.pk
-	update()
+	current_show = Show.objects.get(pk=show)
+	new_slide = Slide.objects.filter(num=current_slide.num + 1, show=current_show)
+	if new_slide:
+		slide = new_slide[0].pk
+		update()
 	return HttpResponse("success")
 	
 def prev_slide(request):
 	global slide
 	current_slide = Slide.objects.get(pk=slide)
+	current_show = Show.objects.get(pk=show)
 	if (current_slide.num > 1):
-		new_slide = Slide.objects.get(num=current_slide.num - 1)
+		new_slide = Slide.objects.get(num=current_slide.num - 1, show=current_show)
 		slide = new_slide.pk
-	update()
+		update()
 	return HttpResponse("success")
 
 def home(request):
