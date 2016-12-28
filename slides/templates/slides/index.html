@@ -1,4 +1,5 @@
 {% extends 'ebdjango/base.html' %}
+{% load staticfiles %}
 
 {% block title %}
 Slideshow
@@ -6,10 +7,38 @@ Slideshow
 
 {% block body %}
 
-
+<img src="{{ slide.img.url }}" id="show" class="slide" />
 
 <script src="{% static 'ebdjango/jquery.js' %}" type="text/javascript"></script>
 <script>
+	
+	var currentUrl = $("#show").attr("src");
+	
+	var httpGet = function(theUrl)
+	{
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+		xmlHttp.send( null );
+		return xmlHttp.responseText;
+	}
+	
+	var update = function()
+	{
+		var url = httpGet("{{ url }}");
+		if (url !== currentUrl)
+		{
+			currentUrl = url;
+			$("#show").fadeOut(400, function() {
+				$("#show").remove();
+			});
+			var newImg = $("<img>").attr("src", url).addClass("slide").appendTo($("body"));
+			newImg.fadeOut(0);
+			newImg.fadeIn(400);
+			newImg.attr("id", "show");
+		}
+	}
+	
+	setInterval(update, 2000);
 
 </script>
 

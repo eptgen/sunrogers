@@ -40,6 +40,7 @@ urlpatterns = [
 	url(r'^comic/', include("comic.urls", namespace="comic")),
 	url(r'^arduino/', include("arduino.urls", namespace="arduino")),
 	url(r'^classes/', include("classes.urls", namespace="classes")),
+	url(r'^slideshow/', include("slides.urls", namespace="slides")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + [
 	url(r'^', views.do_404, name="do404"),
 ]

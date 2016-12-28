@@ -3,6 +3,7 @@ import json
 from django.conf.urls.static import static
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.core.urlresolvers import reverse
 
 from .models import Slide
 
@@ -11,7 +12,7 @@ from .models import Slide
 slide = 0
 show = 0
 with open("slidestate", "r") as f:
-	data = json.parse(f.read())
+	data = json.loads(f.read())
 	slide = data["slide"]
 	show = data["show"]
 	
@@ -20,31 +21,39 @@ def update():
 		f.write(json.stringify({"slide": slide, "show": show}))
 		
 def next_slide(request):
+	global slide
 	current_slide = Slide.objects.get(pk=slide)
-	new_slide = Slide.objects.get(pk=current_slide.num + 1)
+	new_slide = Slide.objects.get(num=current_slide.num + 1)
 	slide = new_slide.pk
 	return HttpResponse("success")
 	
 def prev_slide(request):
+	global slide
 	current_slide = Slide.objects.get(pk=slide)
-	new_slide = Slide.objects.get(pk=current_slide.num - 1)
-	slide = new_slide.pk
+	if (current_slide.num > 1):
+		new_slide = Slide.objects.get(num=current_slide.num - 1)
+		slide = new_slide.pk
 	return HttpResponse("success")
 
 def home(request):
-	return render(request, "slides/index.html", {})
+	mslide = Slide.objects.get(pk=slide)
+	url = reverse("slides:data")
+	return render(request, "slides/index.html", context={"slide": mslide, "url": url})
 	
 def change_show(request):
+	global show, slide
 	show = int(dict(request.GET)["show"])
+	slide = Slide.objects.get(show=show, num=1)
 	return HttpResponse("success")
 	
 def change_slide(request):
+	global slide
 	slide = int(dict(request.GET)["slide"])
 	return HttpResponse("success")
 	
 def data(request):
 	mslide = Slide.objects.get(pk=slide)
-	return HttpResponse(mslide.url())
+	return HttpResponse(mslide.img.url)
 
 
 
