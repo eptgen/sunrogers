@@ -11,7 +11,7 @@ from .models import Slide, Show
 
 slide = 0
 show = 0
-with open("slidestate", "r") as f:
+with open("../slidestate", "r") as f:
 	data = json.loads(f.read())
 	slide = data["slide"]
 	show = data["show"]
@@ -47,7 +47,7 @@ def home(request):
 	
 def change_show(request):
 	global show, slide
-	show = int(dict(request.GET)["show"])
+	show = int(dict(request.GET)["show"][0])
 	slide = Slide.objects.get(show=show, num=1)
 	update()
 	return HttpResponse("success")
