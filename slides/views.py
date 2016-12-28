@@ -54,7 +54,7 @@ def change_show(request):
 	
 def change_slide(request):
 	global slide
-	slide = int(dict(request.GET)["slide"])
+	slide = int(dict(request.GET)["slide"][0])
 	update()
 	return HttpResponse("success")
 	
