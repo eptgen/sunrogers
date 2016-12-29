@@ -48,7 +48,7 @@ def home(request):
 def change_show(request):
 	global show, slide
 	show = int(dict(request.GET)["show"][0])
-	slide = Slide.objects.get(show=show, num=1)
+	slide = Slide.objects.get(show=show, num=1).pk
 	update()
 	return HttpResponse("success")
 	
